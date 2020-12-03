@@ -1,0 +1,15 @@
+{
+  "name": "nos-market-mobile-app-public",
+  "displayName": "Nos Market",
+  "expo": {
+    "name": "Nos Market",
+    "slug": "nos-market-mobile-app-public",
+    "version": "1.0.0",
+    "assetBundlePatterns": ["**/*"],
+    "splash": {
+      "image": "./app/assets/images/lunchScreen.png",
+      "backgroundColor": "#000000",
+      "resizeMode": "contain"
+    }
+  }
+}
