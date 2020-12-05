@@ -1,3 +1,5 @@
+import { showNotification } from './notification';
+
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
@@ -11,7 +13,7 @@ export const addToCart = (productId, quantity = 1) => {
 
     if (!product.manage_stock) {
       dispatch({ type: ADD_TO_CART, productId: productId, quantity: quantity });
-      dispatch({ type: 'SET_NOTIFICATION', message: 'item added to cart' });
+      dispatch(showNotification({ animation: 'cart', duration: 1500 }));
       return;
     }
 
@@ -22,7 +24,7 @@ export const addToCart = (productId, quantity = 1) => {
 
     if (quantity + quantityInCart <= product.stock_quantity) {
       dispatch({ type: ADD_TO_CART, productId: productId, quantity: quantity });
-      dispatch({ type: 'SET_NOTIFICATION', message: 'item added to cart' });
+      dispatch(showNotification({ animation: 'cart', duration: 1500 }));
       return;
     }
 
@@ -32,10 +34,14 @@ export const addToCart = (productId, quantity = 1) => {
         productId: productId,
         quantity: Math.max(0, product.stock_quantity - quantityInCart),
       });
-      dispatch({
-        type: 'SET_NOTIFICATION',
-        message: 'All available items in your cart',
-      });
+      dispatch(
+        showNotification({
+          animation: 'cart',
+          duration: 1500,
+          message: 'All available items in your cart',
+          messageType: 'warning',
+        })
+      );
       return;
     }
   };

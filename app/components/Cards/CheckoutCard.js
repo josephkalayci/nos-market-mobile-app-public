@@ -46,7 +46,6 @@ const CheckoutCard = ({ productId, ...rest }) => {
 
   //Quantity input handler
   const handleQuantityChange = (quantity) => {
-    console.log(quantity);
     dispatch(lineItemActions.updateQuantity(productId, quantity));
   };
 

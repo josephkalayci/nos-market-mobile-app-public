@@ -54,9 +54,15 @@ export default function useInitApp(store) {
           TruenoSBd: require('../assets/fonts/TruenoSBd.ttf'),
         });
       } catch (e) {
+        store.dispatch({ type: 'SET_LOADING_STATE', payload: false });
+        if (
+          e.message ===
+          'Native splash screen is already hidden. Call this method before rendering any view.'
+        )
+          return;
         // We might want to provide this error information to an error reporting service
         store.dispatch({ type: 'SET_LOADING_ERROR', payload: true });
-        store.dispatch({ type: 'SET_LOADING_STATE', payload: false });
+
         console.warn(e);
       } finally {
         setLoadingComplete(true);

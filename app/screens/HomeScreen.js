@@ -135,14 +135,8 @@ const HomeScreen = ({ navigation }) => {
           })
         }
       >
-        <Image
-          source={{ uri: item.image }}
-          style={[
-            styles.categoryCardImage,
-            { transform: item.rotate && [{ rotate: item.rotate }] },
-          ]}
-        />
-        <Text size={13} style={styles.categoryTitle}>
+        <Image source={item.image} style={styles.categoryCardImage} />
+        <Text size={12} style={styles.categoryTitle}>
           {item.name.replace('&amp;', ' & ')}
         </Text>
       </TouchableOpacity>

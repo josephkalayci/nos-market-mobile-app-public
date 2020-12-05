@@ -46,7 +46,6 @@ export default function App(props) {
           <GalioProvider theme={materialTheme}>
             <Block flex>
               <Toast />
-
               {Platform.OS === 'ios' ? (
                 <StatusBar barStyle='dark-content' />
               ) : (

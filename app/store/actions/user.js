@@ -34,7 +34,6 @@ export const setShippingAddress = (value) => {
 
     //if auth user update user info at backend
     if (user.isAuth) {
-      console.log(user.details.id, user.token);
       return axios
         .patch(
           `users/${user.details.id}`,

@@ -2,6 +2,10 @@ import { SET_NOTIFICATION, CLEAR_NOTIFICATION } from '../actions/notification';
 
 const initialState = {
   message: '',
+  messageType: '',
+  animation: '',
+  duration: '',
+  id: '',
 };
 
 export default (state = initialState, action) => {
@@ -10,12 +14,19 @@ export default (state = initialState, action) => {
       return {
         ...state,
         message: action.message,
+        messageType: action.messageType,
+        animation: action.animation,
+        duration: action.duration,
+        id: action.id,
       };
 
     case CLEAR_NOTIFICATION:
       return {
-        ...state,
         message: '',
+        messageType: '',
+        animation: '',
+        duration: '',
+        id: '',
       };
   }
 

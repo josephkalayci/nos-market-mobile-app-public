@@ -14,7 +14,7 @@ export default function useShipping() {
     (state) => state.user.details?.shipping?.postcode
   );
   const [msg, setMsg] = React.useState({ type: '', text: '' });
-  const [shippingCost, setShippingCost] = React.useState(false);
+  const [shippingCost, setShippingCost] = React.useState('');
 
   React.useEffect(() => {
     const freeShipping = methods.find((el) => el.method_id === 'free_shipping');
@@ -22,13 +22,13 @@ export default function useShipping() {
 
     if (!postcode) {
       setMsg({ type: '', text: '' });
-      setShippingCost(false);
+      setShippingCost('');
       return;
     }
 
     if (postcode && lastUpdated == '') {
       setMsg({ type: '', text: '' });
-      setShippingCost(false);
+      setShippingCost('');
       dispatch(fetchShippingRate(postcode));
       return;
     }
@@ -39,7 +39,7 @@ export default function useShipping() {
         text:
           'Currently we are not available in your area or you entered incorrect postal code',
       });
-      setShippingCost(false);
+      setShippingCost('');
       return;
     }
 

@@ -54,7 +54,7 @@ const PaymentSummaryView = ({
           <Text
             style={[
               styles.postCodeText,
-              postcode && {
+              !!!postcode && {
                 textTransform: null,
                 fontSize: 13,
               },
@@ -64,8 +64,7 @@ const PaymentSummaryView = ({
             {postcode ? postcode : 'Please enter post code to see the pricing'}
           </Text>
         </Text>
-
-        {shippingCost && (
+        {typeof shippingCost == 'number' && (
           <Text>{shippingCost === 0 ? 'Free' : `${'$' + shippingCost}`}</Text>
         )}
       </Block>
@@ -74,7 +73,7 @@ const PaymentSummaryView = ({
       <Block row space='between' style={styles.paymentSummaryTextContainer}>
         <Text bold>{'Bag subtotal'}</Text>
 
-        <Text>{`$${Number(shippingCost + totalProductCost + totalTax).toFixed(
+        <Text>{`$${Number(+shippingCost + totalProductCost + totalTax).toFixed(
           2
         )}`}</Text>
       </Block>
@@ -101,9 +100,9 @@ PaymentSummaryView.defaultProps = {
 PaymentSummaryView.propTypes = {
   totalProductCost: PropTypes.number,
   totalTax: PropTypes.number,
-  shippingCost: PropTypes.number,
+  //shippingCost: PropTypes.number,
   shippingMsg: PropTypes.string,
-  shippingMsgType: PropTypes.oneOf(['success', 'info', 'warning', 'error']),
+  shippingMsgType: PropTypes.oneOf(['success', 'info', 'warning', 'error', '']),
   postcode: PropTypes.string,
   onPostcodePress: PropTypes.func,
   onCheckoutPress: PropTypes.func,

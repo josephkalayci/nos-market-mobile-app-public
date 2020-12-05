@@ -84,7 +84,6 @@ const ProductScreen = ({ navigation, scene, route }) => {
 
   React.useEffect(() => {
     setMainImage(product?.data.images?.[0]?.src);
-    console.log(productId, product?.data.related_ids);
     isCancelled = false;
     if (!product) {
       return;

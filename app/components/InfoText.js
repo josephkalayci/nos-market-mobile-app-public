@@ -43,12 +43,13 @@ const InfoText = ({
   color,
   style,
   showContent,
+  onlyText,
   ...rest
 }) => {
-  React.useLayoutEffect(() => {
+  /* React.useLayoutEffect(() => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
   }, [showContent]);
-
+ */
   if (showContent) {
     return (
       <Block
@@ -66,12 +67,15 @@ const InfoText = ({
         ]}
         {...rest}
       >
-        <Icon
-          name={infoTextStyles[severity].iconName}
-          family={infoTextStyles[severity].iconFamily}
-          color={'white'}
-          size={iconSize}
-        />
+        {!onlyText && (
+          <Icon
+            name={infoTextStyles[severity].iconName}
+            family={infoTextStyles[severity].iconFamily}
+            style={styles.icon}
+            color={'white'}
+            size={iconSize}
+          />
+        )}
         <Text size={textSize} style={styles.text}>
           {children}
         </Text>
@@ -82,6 +86,7 @@ const InfoText = ({
   }
 };
 InfoText.defaultProps = {
+  onlyText: false,
   styles: {},
   iconSize: 18,
   textSize: 12,
@@ -104,7 +109,8 @@ const styles = StyleSheet.create({
     margin: 4,
     padding: 4,
   },
-  text: { color: 'white', marginLeft: 8, fontWeight: '500' },
+  icon: { marginRight: 8 },
+  text: { color: 'white', fontWeight: '500' },
   shadow: {
     shadowColor: theme.COLORS.BLOCK,
     shadowOffset: {
