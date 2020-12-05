@@ -25,7 +25,7 @@ import FavListScreen from '../screens/FavListScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import LoginScreen from '../screens/LoginScreen';
 import PastPurchasesScreen from '../screens/PastPurchasesScreen';
-import ShoppingCartScreen from '../screens/ShoppingCartScreen';
+import ShoppingCartScreen from '../screens/ShoppingCart/ShoppingCartScreen';
 import CheckoutScreen from '../screens/CheckoutScreen';
 import OrderScreen from '../screens/OrderScreen';
 
@@ -181,7 +181,11 @@ function ShoppingCartStack(props) {
       <Stack.Screen
         name='Cart'
         component={ShoppingCartScreen}
-        options={{ header: () => null }}
+        options={{
+          header: ({ navigation }) => (
+            <Header title='Shopping Cart' navigation={navigation} />
+          ),
+        }}
       />
       <Stack.Screen
         name='CheckoutScreen'
